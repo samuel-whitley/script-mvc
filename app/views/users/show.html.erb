@@ -1,0 +1,12 @@
+
+<%@user.todos.each do |todo|%>
+<ul>
+<li><%=todo.notes%><%=link_to 'delete todo',user_todo_path(@user,todo.id), :method => :delete%></li>
+</ul>
+<%end%>
+
+<%=link_to 'make a new todo', new_user_todo_path(@user) %>
+  
+  
+
+  

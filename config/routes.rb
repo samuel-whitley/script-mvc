@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  root to: "users#show"
+  resources :users do
+  resources :todos
+end
+
+  # get 'users', to: 'users#show'
+  # post 'users/todos', to: 'todos#create', as: 'todos'
+  # get 'users/todos', to: 'todos#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
