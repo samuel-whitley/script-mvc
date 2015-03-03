@@ -1,0 +1,5 @@
+<%= form_for (@todo, url: todos_path) do |f| %>
+  <%=f.text_field :notes %>
+  <%=f.text_area :notes %>
+  <%= submit_tag("ADD") %>
+ <% end %>
