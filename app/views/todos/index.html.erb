@@ -1,0 +1,12 @@
+
+
+
+
+
+<%=render 'form'%>
+
+<% @todo.each do |todo| %>
+<div id="rd">
+<%=render :partial => @todo, todo: todo%>
+</div>
+<%end%>

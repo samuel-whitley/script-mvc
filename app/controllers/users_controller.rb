@@ -6,7 +6,7 @@ class UsersController < ApplicationController
  
     @user = current_user
     binding.pry
-    @todo = @user.todos
+    @todos = @user.todos
   
   end
 
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     redirect_to user_session_path
   else
     @user = current_user
-    @todo = @user.todos
+    @todos = @user.todos.where(user_id: current_user.id)
     end
   end
 

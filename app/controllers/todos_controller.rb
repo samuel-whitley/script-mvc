@@ -1,9 +1,18 @@
 class TodosController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
-  before_action :set_todos, only: [:edit, :update]
+  before_action :authenticate_user!
+  before_action :set_user
+  before_action :set_todos, only: [:show, :edit, :update, :destroy]
+
+  def index
+    binding.pry
+    if !current_user
+    redirect_to user_session_path
+  else
+    @todos = @user.todos
+  end
+end
 
   def show
-    @todo = Todo.all
   end
 
   def new
@@ -13,15 +22,16 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)
     @todo.user_id = params["user_id"]
-    respond_to do |format|
-      if @todo.save
-    format.html {redirect_to :root}
-    format.js { render :create }
-  else
-    render :root
-  end
+    if @todo.save
+      respond_to do |format|
+      format.html {redirect_to :root}
+      format.js { }
+      end
+    else
+      render :root
     end
   end
+    
 
   def destroy
     @todo = Todo.find(params["id"])
@@ -37,7 +47,7 @@ def edit
 end
 
 def update
-  binding.pry
+  
   @todo.notes=(params[:todo][:notes])
   respond_to do |format|
     if @todo.save
@@ -50,16 +60,19 @@ end
 
 private
 
-def set_user
-@user=User.find(params[:user_id])
-end
+
   
 def set_todos
 @todo = Todo.find(params[:id])
 end
 
+def set_user
+  binding.pry
+  @user = current_user
+end
+
 def todo_params
-  params.require(:todo).permit(:notes)
+  params.require(:todo).permit(:notes, :user_id)
 end
   
 end
