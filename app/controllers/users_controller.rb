@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+
+
   def show
  
     @user = current_user
@@ -8,8 +11,12 @@ class UsersController < ApplicationController
   end
 
   def index
-  @user = current_user
-  
-  @todo = @user.todos
+  if !current_user
+    redirect_to user_session_path
+  else
+    @user = current_user
+    @todo = @user.todos
+    end
   end
+
 end
