@@ -1,0 +1,6 @@
+<%= form_for Todo.new, url: user_todos_path(@user), remote: true do |f| %>
+  <%=f.label "new todo" %>
+  <%=f.text_field :notes %>
+  <%= submit_tag("ADD") %>
+ <% end %>
+

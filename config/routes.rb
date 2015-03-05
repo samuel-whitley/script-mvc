@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: "users#show"
-  resources :users do
+  root to: "users#index"
+  resources :users, :only => [:show, :index] do
   resources :todos
 end
 
