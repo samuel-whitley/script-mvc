@@ -1,4 +1,6 @@
-<%= form_for @todo, url: user_todo_path(@user,@todo.id), method: :patch do |f| %>
+
+<%= form_for([@user,Todo.new], remote: true) do |f| %>
+  
   <%=f.label "new todo" %>
   <%=f.text_field :notes %>
   <%= submit_tag("ADD") %>

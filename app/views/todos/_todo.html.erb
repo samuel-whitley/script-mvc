@@ -1,29 +1,15 @@
+
+<div class="row">
+<%=div_for todo do %>
   
-
-
-<% @user.todos.each do |todo|%>
-   <%=div_for todo do %>
-
-   <div class="row colors">
-   <div class="col-xs-3">
-      <%=todo.notes%> 
-
-</div>
-<div class="col-xs-3">
-
-  <%=todo.finished%> 
-  <%=link_to 'edit', edit_user_todo_path(@user,todo.id) %>
-</div>
-
-
-<div class="col-xs-3">
-  <%=button_to 'Remove',user_todo_path(@user,todo.id), :method => :delete%>
+  <div class="col-xs-3">    
+    <%=todo.notes%> | <%=todo.finished%> <%=link_to 'edit', edit_user_todo_path(@user,todo.id) %>
   </div>
+  
+  <div class="col-xs-3">
+    <%=button_to 'Remove',user_todo_path(@user,todo.id), :method => :delete%>
+  </div>
+<%end%>
 </div>
-  
 
-  
-
-<%end%>
-<%end%>
 
